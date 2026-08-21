@@ -2,7 +2,7 @@ import streamlit as st
 from google import genai
 
 # Konfigurácia stránky
-st.set_page_config(page_title="MTT Asistent", page_icon="🩺")
+st.set_page_config(page_title="Montgomery Edubot", page_icon="🩺")
 
 # CSS pre moderný dizajn
 st.markdown("""
@@ -30,9 +30,6 @@ st.markdown("""
 
 # Obsah stránky
 st.markdown("<h1 class='main-title'>🩺 Montgomery T-kanyla Asistent</h1>", unsafe_allow_html=True)
-
-# Pridanie obrázka
-st.image("http://googleusercontent.com/image_collection/image_retrieval/15559067511444345287", caption="Montgomery T-kanyla", use_container_width=True)
 
 st.write("Dobrý deň. Som Váš digitálny asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu (MTT).")
 
