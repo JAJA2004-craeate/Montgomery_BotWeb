@@ -2,7 +2,7 @@ import streamlit as st
 from google import genai
 
 # Konfigurácia stránky
-st.set_page_config(page_title="Montgomery Edubot", page_icon="🧬", layout="centered")
+st.set_page_config(page_title="Montgomery Edubot", page_icon="👩‍⚕️", layout="centered")
 
 # Moderný medicínsky dizajn (Mint / Teal téma)
 st.markdown("""
