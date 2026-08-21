@@ -55,7 +55,7 @@ st.markdown("""
 # Vizuálny obal (karta)
 st.markdown("<div class='main-container'>", unsafe_allow_html=True)
 
-st.markdown("<h1 class='main-title'>🩺 Asistent pre Montgomery T-kanylu</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-title'>🩺 Montgomery Edubot</h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>Váš digitálny sprievodca ošetrovateľskou starostlivosťou</p>", unsafe_allow_html=True)
 
 st.write("Dobrý deň. Som tu, aby som Vám pomohol s odbornými informáciami týkajúcimi sa starostlivosti o MTT.")
