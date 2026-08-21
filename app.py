@@ -2,39 +2,63 @@ import streamlit as st
 from google import genai
 
 # Konfigurácia stránky
-st.set_page_config(page_title="Montgomery Edubot", page_icon="🩺")
+st.set_page_config(page_title="Montgomery Edubot", page_icon="🩺", layout="centered")
 
-# CSS pre moderný dizajn
+# Pokročilejší CSS dizajn
 st.markdown("""
     <style>
+    /* Pozadie celej stránky s jemným moderným prechodom */
     .stApp {
-        background: linear-gradient(135deg, #e3f2fd, #ffffff);
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
+    
+    /* Hlavný kontajner / karta pre obsah */
+    .main-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        margin-bottom: 20px;
+    }
+
+    /* Hlavný nadpis */
     .main-title {
-        color: #0d47a1;
+        color: #1e3c72;
         text-align: center;
-        font-family: 'Arial', sans-serif;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        margin-bottom: 10px;
     }
+
+    /* Podnadpis / úvodný text */
+    .subtitle {
+        color: #4a5568;
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+    }
+
+    /* Disclaimer box */
     .disclaimer {
-        font-size: 0.9em;
-        color: #555;
+        font-size: 0.85rem;
+        color: #718096;
         text-align: center;
         margin-top: 30px;
         padding: 15px;
-        background-color: rgba(255, 255, 255, 0.6);
-        border-radius: 15px;
-        border: 1px solid #bbdefb;
+        background-color: #fffaf0;
+        border-radius: 12px;
+        border: 1px solid #feebc8;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Obsah stránky
-st.markdown("<h1 class='main-title'>🩺 Montgomery T-kanyla Asistent</h1>", unsafe_allow_html=True)
+# Vizuálny obal (karta)
+st.markdown("<div class='main-container'>", unsafe_allow_html=True)
 
-st.write("Dobrý deň. Som Váš digitálny asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu (MTT).")
+st.markdown("<h1 class='main-title'>🩺 Asistent pre Montgomery T-kanylu</h1>", unsafe_allow_html=True)
+st.markdown("<p class='subtitle'>Váš digitálny sprievodca ošetrovateľskou starostlivosťou</p>", unsafe_allow_html=True)
 
-# Disclaimer
-st.markdown("<div class='disclaimer'>⚠️ <strong>UPOZORNENIE:</strong> Tento bot slúži výhradne na informačné účely. Nie je náhradou za odbornú lekársku konzultáciu, diagnostiku ani liečbu. V prípade zdravotných ťažkostí sa vždy poraďte s lekárom.</div>", unsafe_allow_html=True)
+st.write("Dobrý deň. Som tu, aby som Vám pomohol s odbornými informáciami týkajúcimi sa starostlivosti o MTT.")
 
 # Logika bota
 client = genai.Client(api_key=st.secrets["GOOGLE_API_KEY"])
@@ -50,3 +74,8 @@ if query:
             st.success(response.text)
         except Exception as e:
             st.error(f"Nastala chyba: {e}")
+
+# Disclaimer v spodnej časti karty
+st.markdown("<div class='disclaimer'>⚠️ <strong>UPOZORNENIE:</strong> Tento bot slúži výhradne na informačné účely. Nie je náhradou za odbornú lekársku konzultáciu, diagnostiku ani liečbu. V prípade zdravotných ťažkostí sa vždy poraďte s lekárom.</div>", unsafe_allow_html=True)
+
+st.markdown("</div>", unsafe_allow_html=True)
