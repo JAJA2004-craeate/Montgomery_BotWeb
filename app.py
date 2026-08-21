@@ -1,27 +1,22 @@
 import streamlit as st
 import os
-from openai import OpenAI
+from google import genai
 
-# Načítanie OpenAI kľúča zo Secrets
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+# Inicializácia klienta pomocou kľúča zo Secrets
+client = genai.Client(api_key=st.secrets["GOOGLE_API_KEY"])
 
 st.title("Edukácia: Montgomery T-tubus")
-st.write("Dobrý deň. Som Váš digitálny asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu(MTT). Som tu, aby som Vám pomohol s otázkami týkajúcimi sa základných informácií aj ošetrovateľských postupov na základe odborných študijných materiálov. Ako Vám dnes môžem pomôcť?")
+st.write("Dobrý deň. Som Váš digitálny asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu (MTT). Ako Vám dnes môžem pomôcť?")
 
-# Pole na otázku
 query = st.text_input("Napíš svoju otázku...")
 
 if query:
     with st.spinner("Pripravujem odpoveď..."):
         try:
-            # Priame volanie OpenAI modelu pre maximálnu spoľahlivosť bez chýb
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "Si odborný asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu (MTT). Poskytuj presné, odborné a empatiou vedené odpovede na základe medicínskych štandardov."},
-                    {"role": "user", "content": query}
-                ]
+            response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=f"Si odborný asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu (MTT). Odpovedz na otázku: {query}"
             )
-            st.success(response.choices[0].message.content)
+            st.success(response.text)
         except Exception as e:
             st.error(f"Nastala chyba: {e}")
