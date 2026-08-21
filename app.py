@@ -14,7 +14,7 @@ if query:
     with st.spinner("Pripravujem odpoveď..."):
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-flash",
+                model="gemini-3.6-flash",
                 contents=f"Si odborný asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu (MTT). Odpovedz na otázku: {query}"
             )
             st.success(response.text)
