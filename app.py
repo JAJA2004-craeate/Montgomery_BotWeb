@@ -33,7 +33,7 @@ st.markdown("""
 # Hlavný box s úvodom
 st.markdown("""
     <div class="content-box">
-        <h1 class="title"> 🩺Montgomery Edubot</h1>
+        <h1 class="title">🩺 Montgomery Edubot</h1>
         <p>Váš rýchly digitálny asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu.</p>
     </div>
 """, unsafe_allow_html=True)
@@ -46,10 +46,10 @@ query = st.text_input("🔍 Napíšte svoju otázku o MTT...")
 if query:
     with st.spinner("Hľadám odpoveď..."):
         try:
-            # Pridali sme konfiguráciu na zrýchlenie (temperature=0.0 pre priame a rýchle odpovede)
+            # Systémová inštrukcia už neobsahuje opakovanie upozornenia
             config = types.GenerateContentConfig(
                 temperature=0.0,
-                system_instruction="Si stručný odborný asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu. Odpovedaj vecne. Na koniec vždy pridaj: Upozornenie: Slúži len na informovanosť, nie je náhradou lekára."
+                system_instruction="Si stručný a odborný asistent pre ošetrovateľskú starostlivosť o Montgomery T-kanylu. Odpovedz vecne a odborne na otázku používateľa."
             )
             
             response = client.models.generate_content(
@@ -61,7 +61,7 @@ if query:
         except Exception as e:
             st.error(f"Nastala chyba: {e}")
 
-# Disclaimer
+# Disclaimer v samostatnom boxíku
 st.markdown("""
     <div style="background-color: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.8em; color: #64748b; margin-top: 30px;">
         ⚠️ <strong>Upozornenie:</strong> Tento nástroj slúži výhradne na informačné účely. Nenahrádza odbornú lekársku konzultáciu.
