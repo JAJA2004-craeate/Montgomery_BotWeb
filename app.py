@@ -2,70 +2,69 @@ import streamlit as st
 from google import genai
 
 # Konfigurácia stránky
-st.set_page_config(page_title="Montgomery Edubot", page_icon="🩺", layout="centered")
+st.set_page_config(page_title="Montgomery Edubot", page_icon="🧬", layout="centered")
 
-# Pokročilejší CSS dizajn
+# Moderný medicínsky dizajn (Mint / Teal téma)
 st.markdown("""
     <style>
-    /* Pozadie celej stránky s jemným moderným prechodom */
     .stApp {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
     }
     
-    /* Hlavný kontajner / karta pre obsah */
-    .main-container {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    .main-box {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 24px;
+        box-shadow: 0 12px 30px rgba(13, 148, 136, 0.08);
+        border: 1px solid rgba(13, 148, 136, 0.1);
+        margin-top: 20px;
         margin-bottom: 20px;
     }
 
-    /* Hlavný nadpis */
-    .main-title {
-        color: #1e3c72;
+    .app-title {
+        color: #0f766e;
         text-align: center;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 700;
-        margin-bottom: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 800;
+        font-size: 2.2rem;
+        margin-bottom: 5px;
     }
 
-    /* Podnadpis / úvodný text */
-    .subtitle {
-        color: #4a5568;
+    .app-subtitle {
+        color: #64748b;
         text-align: center;
-        font-size: 1.1rem;
-        margin-bottom: 25px;
+        font-size: 1rem;
+        margin-bottom: 30px;
+        font-weight: 400;
     }
 
-    /* Disclaimer box */
-    .disclaimer {
+    .disclaimer-box {
         font-size: 0.85rem;
-        color: #718096;
+        color: #475569;
         text-align: center;
-        margin-top: 30px;
+        margin-top: 35px;
         padding: 15px;
-        background-color: #fffaf0;
+        background-color: #f8fafc;
         border-radius: 12px;
-        border: 1px solid #feebc8;
+        border-left: 4px solid #0f766e;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Vizuálny obal (karta)
-st.markdown("<div class='main-container'>", unsafe_allow_html=True)
+# Vizuálny obal
+st.markdown("<div class='main-box'>", unsafe_allow_html=True)
 
-st.markdown("<h1 class='main-title'>🩺 Montgomery Edubot</h1>", unsafe_allow_html=True)
-st.markdown("<p class='subtitle'>Váš digitálny sprievodca ošetrovateľskou starostlivosťou</p>", unsafe_allow_html=True)
+st.markdown("<h1 class='app-title'>🧬 Montgomery Edubot</h1>", unsafe_allow_html=True)
+st.markdown("<p class='app-subtitle'>Interaktívny edukačný asistent pre ošetrovateľskú starostlivosť o MTT</p>", unsafe_allow_html=True)
 
-st.write("Dobrý deň. Som tu, aby som Vám pomohol s odbornými informáciami týkajúcimi sa starostlivosti o MTT.")
+st.write("Dobrý deň. Som tu na to, aby som Vám poskytol odborné informácie a odpovedal na Vaše otázky týkajúce sa starostlivosti o Montgomery T-kanylu.")
 
 # Logika bota
 client = genai.Client(api_key=st.secrets["GOOGLE_API_KEY"])
-query = st.text_input("Napíš svoju otázku...")
+query = st.text_input("Napíšte svoju otázku...")
 
 if query:
-    with st.spinner("Pripravujem odbornú odpoveď..."):
+    with st.spinner("Vyhľadávam odborné informácie..."):
         try:
             response = client.models.generate_content(
                 model="gemini-3.6-flash",
@@ -75,7 +74,7 @@ if query:
         except Exception as e:
             st.error(f"Nastala chyba: {e}")
 
-# Disclaimer v spodnej časti karty
-st.markdown("<div class='disclaimer'>⚠️ <strong>UPOZORNENIE:</strong> Tento bot slúži výhradne na informačné účely. Nie je náhradou za odbornú lekársku konzultáciu, diagnostiku ani liečbu. V prípade zdravotných ťažkostí sa vždy poraďte s lekárom.</div>", unsafe_allow_html=True)
+# Disclaimer
+st.markdown("<div class='disclaimer-box'>⚠️ <strong>UPOZORNENIE:</strong> Tento nástroj slúži výhradne na informačné účely a podporu vzdelávania. Nenahrádza odbornú lekársku konzultáciu, diagnostiku ani liečbu.</div>", unsafe_allow_html=True)
 
 st.markdown("</div>", unsafe_allow_html=True)
